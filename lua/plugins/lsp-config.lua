@@ -29,7 +29,7 @@ return {
                     "bashls",
                     "clangd",
                     "vhdl_ls",
-                    "pylsp"
+                    --"pylsp"
                 }
             })
         end
@@ -84,6 +84,7 @@ return {
                 },
             })
 
+            --[[
             lspconfig.pylsp.setup({
                 cmd = { 'pylsp' },
                 filetypes = { 'python' },
@@ -96,12 +97,21 @@ return {
                     '.git',
                 },
             })
+            ]]
 
             -- type `:h vim.lsp.buf` for documentation on lsp functions
-            vim.keymap.set( 'n', 'K', vim.lsp.buf.hover, { desc = "Display hover information about symbol under cursor"})
-            -- type KK to enter text in hover buffer.
-            vim.keymap.set( 'n', 'gd', vim.lsp.buf.definition, { desc = "Got to definition"})
-            vim.keymap.set( { 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, {})
+
+            vim.keymap.set( 'n',    'K',    vim.lsp.buf.hover,          { desc = "Display hover information about symbol under cursor"})
+            vim.keymap.set('n',     'grn',  vim.lsp.buf.rename,         { desc = '[R]e[n]ame'})
+            vim.keymap.set({'n', 'x'}, 'gra',  vim.lsp.buf.code_action, { desc = '[G]oto Code [A]ction'})
+            vim.keymap.set('n',     'grD',  vim.lsp.buf.declaration,    { desc = '[G]oto [D]eclaration'})
+
+            vim.keymap.set('n', 'grr',  require('telescope.builtin').lsp_references,                { desc = '[G]oto [R]eferences'})
+            vim.keymap.set('n', 'gri',  require('telescope.builtin').lsp_implementations,           { desc = '[G]oto [I]mplementation'})
+            vim.keymap.set('n', 'grd',  require('telescope.builtin').lsp_definitions,               { desc = '[G]oto [D]efinition'})
+            vim.keymap.set('n', 'gO',   require('telescope.builtin').lsp_document_symbols,          { desc = 'Open Document Symbols'})
+            vim.keymap.set('n', 'gW',   require('telescope.builtin').lsp_dynamic_workspace_symbols, { desc = 'Open Workspace Symbols'})
+            vim.keymap.set('n', 'grt',  require('telescope.builtin').lsp_type_definitions,          { desc = '[G]oto [T]ype Definition'})
         end
     }
 }

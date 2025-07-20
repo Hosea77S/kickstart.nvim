@@ -5,7 +5,7 @@ return {
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons", 
         "MunifTanjim/nui.nvim",
-        {"3rd/image.nvim", opts = {}},
+        --{"3rd/image.nvim", opts = {}},
     },
     config = function()
         vim.keymap.set( 'n', '<leader>n', ':Neotree filesystem reveal left<CR>', { desc = 'Opens filesystem tree on left'})

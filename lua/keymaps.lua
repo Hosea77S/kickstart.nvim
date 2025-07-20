@@ -1,3 +1,4 @@
+vim.keymap.set( 'i', 'jj', '<escape>', { desc = 'escape insert mode'})
 
 vim.keymap.set( 'n', '<C-s>', ':w<CR>',  { desc = 'Saves current buffer'})
 vim.keymap.set( 'n', '<C-q>', ':q!<CR>', { desc = 'Quit current buffer without saving'})
