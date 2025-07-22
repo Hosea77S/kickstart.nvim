@@ -1,13 +1,14 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.cmd("set fileformat=unix")
+vim.cmd("filetype on")
 
 --------------------------------------------------------------------------------
 -- TAB settings (using vim scripting in lua)
 vim.cmd("set expandtab")
 vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=4")
-vim.cmd("set shiftwidth=4")
+vim.cmd("set shiftwidth=0")
 
 -- UNRELATED: for some reason <C-n> in insert mode opens text suggestions?
 
@@ -29,7 +30,6 @@ vim.o.foldnestmax = 4
 -- zR open all folds
 -- zM close all open folds
 -- za toggles the fold at the cursor
-
 
 --------------------------------------------------------------------------------
 -- Make sure to setup `mapleader` and `maplocalleader` before

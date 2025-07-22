@@ -4,8 +4,8 @@ vim.keymap.set( 'n', '<C-s>', ':w<CR>',  { desc = 'Saves current buffer'})
 vim.keymap.set( 'n', '<C-q>', ':q!<CR>', { desc = 'Quit current buffer without saving'})
 vim.keymap.set( 'n', '<C-X>', ':wqa!<CR>', { desc = 'Quit every buffer with saving'})
 
-vim.keymap.set( 'n', 'o',   'o<escape>', { desc = 'new line below without insert mode'})
-vim.keymap.set( 'n', 'O',   'O<escape>', { desc = 'new line above without insert mode'})
+vim.keymap.set( 'n', 'o',   'ox<escape>x', { desc = 'new line below without insert mode'})
+vim.keymap.set( 'n', 'O',   'Ox<escape>x', { desc = 'new line above without insert mode'})
 
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
