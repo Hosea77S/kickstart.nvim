@@ -105,6 +105,7 @@ return {
             vim.keymap.set('n',     'grn',  vim.lsp.buf.rename,         { desc = '[R]e[n]ame'})
             vim.keymap.set({'n', 'x'}, 'gra',  vim.lsp.buf.code_action, { desc = '[G]oto Code [A]ction'})
             vim.keymap.set('n',     'grD',  vim.lsp.buf.declaration,    { desc = '[G]oto [D]eclaration'})
+            vim.keymap.set('n',     'grx',  ':lua vim.diagnostic.open_float()<CR>',    { desc = 'Show diagnostics'})
 
             vim.keymap.set('n', 'grr',  require('telescope.builtin').lsp_references,                { desc = '[G]oto [R]eferences'})
             vim.keymap.set('n', 'gri',  require('telescope.builtin').lsp_implementations,           { desc = '[G]oto [I]mplementation'})
