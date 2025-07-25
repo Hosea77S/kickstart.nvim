@@ -8,8 +8,15 @@ return {
         --{"3rd/image.nvim", opts = {}},
     },
     config = function()
-        vim.keymap.set( 'n', '<leader>n', ':Neotree filesystem reveal left<CR>', { desc = 'Opens filesystem tree on left'})
+        -- vim.keymap.set( 'n', '<leader>n', ':Neotree filesystem reveal left<CR>', { desc = 'Opens filesystem tree on left'})
+        vim.keymap.set( 'n', '<leader>n', ':Neotree action=focus source=filesystem position=float toggle=true<CR>', { desc = 'Opens filesystem tree on left'})
+
         require("neo-tree").setup({
+            filesystem = {
+                filtered_items = {
+                    visible = true,
+                }
+            },
             window = {
                 mappings = {
                     ["<space>"] = {
@@ -29,7 +36,7 @@ return {
                             use_image_nvim = true,
                         },
                     }, -- ["p"]
-                    
+
                     ["Z"] = "close_all_nodes",
                     ["z"] = "expand_all_subnodes",
                 }, -- end mappings

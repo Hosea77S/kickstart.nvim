@@ -25,8 +25,6 @@ vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldtext = ""
 vim.opt.foldcolumn = "0"
 vim.opt.fillchars:append({fold = " "})
-vim.o.foldlevelstart = 2
-vim.o.foldnestmax = 4
 -- zR open all folds
 -- zM close all open folds
 -- za toggles the fold at the cursor

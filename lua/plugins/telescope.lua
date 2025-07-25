@@ -15,6 +15,7 @@ return {
             vim.keymap.set('n', '<leader>sg', builtin.live_grep,    { desc = 'Telescope live grep' })
             vim.keymap.set('n', '<leader>sb', builtin.buffers,      { desc = 'Telescope buffers' })
             vim.keymap.set('n', '<leader>sh', builtin.help_tags,    { desc = 'Telescope help tags' })
+            vim.keymap.set('n', '<leader>sk', builtin.current_buffer_fuzzy_find,    { desc = 'Telescope find in buffer' })
         end
     },
     -- It sets vim.ui.select to telescope. That means for example that 
