@@ -1,8 +1,4 @@
-vim.o.foldenable = true
-vim.o.foldlevel = 99
-vim.o.foldlevelstart = 1
-vim.o.foldnestmax = 5
-vim.o.foldmethod = "indent"
-vim.o.foldtext = ""
-vim.opt.foldcolumn = "0"
-vim.opt.fillchars:append({fold = " "})
+vim.opt_local.foldenable = true
+vim.opt_local.foldlevel = 99
+vim.opt_local.foldlevelstart = 0
+vim.opt_local.foldnestmax = 99
