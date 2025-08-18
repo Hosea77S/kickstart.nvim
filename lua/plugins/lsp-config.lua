@@ -29,6 +29,7 @@ return {
                     "bashls",
                     "clangd",
                     "vhdl_ls",
+                    "verible",
                     --"pylsp"
                 }
             })
@@ -83,6 +84,8 @@ return {
                     '.vhdl_ls.toml',
                 },
             })
+
+            lspconfig.verible.setup({})
 
             --[[
             lspconfig.pylsp.setup({

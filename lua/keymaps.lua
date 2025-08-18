@@ -15,3 +15,8 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 vim.keymap.set('n', '<C-]>', ':+tabn<cr>', {})
 vim.keymap.set('n', '<C-[>', ':-tabn<cr>', {})
+
+vim.keymap.set({'n', 'v'}, '<C-c>', '"+y', {})
+vim.keymap.set({'n', 'v'}, '<C-p>', '"+p', {})
+
+vim.keymap.set('n', '<leader>r', ':%s//', {})
