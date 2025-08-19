@@ -30,7 +30,7 @@ return {
                     "clangd",
                     "vhdl_ls",
                     "verible",
-                    --"pylsp"
+                    "pyright"
                 }
             })
         end
@@ -87,9 +87,8 @@ return {
 
             lspconfig.verible.setup({})
 
-            --[[
-            lspconfig.pylsp.setup({
-                cmd = { 'pylsp' },
+            lspconfig.pyright.setup({
+                cmd = { "pyright-langserver", "--stdio" },
                 filetypes = { 'python' },
                 root_markers = {
                     'pyproject.toml',
@@ -100,7 +99,6 @@ return {
                     '.git',
                 },
             })
-            ]]
 
             -- type `:h vim.lsp.buf` for documentation on lsp functions
 
