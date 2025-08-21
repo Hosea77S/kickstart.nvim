@@ -16,6 +16,11 @@ return {
             vim.keymap.set('n', '<leader>sb', builtin.buffers,      { desc = 'Telescope buffers' })
             vim.keymap.set('n', '<leader>sh', builtin.help_tags,    { desc = 'Telescope help tags' })
             vim.keymap.set('n', '<leader>sk', builtin.current_buffer_fuzzy_find,    { desc = 'Telescope find in buffer' })
+            vim.keymap.set('n', '<leader>ss', builtin.lsp_document_symbols,         { desc = 'List symbols in current buffer' })
+            vim.keymap.set('n', '<leader>sm', builtin.keymaps,      { desc = 'List normal mode keymaps' })
+            vim.keymap.set('n', '<leader>sr', builtin.registers,    { desc = 'Lists vim registers contents' })
+            vim.keymap.set('n', '<leader>si', builtin.lsp_implementations,          { desc = 'Goto the implementation of the word under the cursor' })
+            vim.keymap.set('n', '<leader>sd', builtin.lsp_definitions,              { desc = 'Goto the definition of the word under the cursor' })
         end
     },
     -- It sets vim.ui.select to telescope. That means for example that 
