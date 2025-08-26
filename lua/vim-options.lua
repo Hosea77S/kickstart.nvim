@@ -16,14 +16,15 @@ vim.cmd("set shiftwidth=0")
 -- VISUAL SETTINGS
 vim.cmd("set nowrap")
 vim.cmd("set cursorline")
-vim.cmd("set scrolloff=8")
-vim.o.foldenable = true
-vim.o.foldlevel = 99
-vim.o.foldlevelstart = 0
-vim.o.foldnestmax = 6
+vim.cmd("set scrolloff=12")
+vim.cmd("set foldopen-=block")
+vim.opt.foldenable = true
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 0
+vim.opt.foldnestmax = 6
 
-vim.o.foldmethod = "expr"
-vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 function MyFoldText()
     local lines = vim.v.foldend - vim.v.foldstart + 1
@@ -33,7 +34,7 @@ end
 -- vim.wo.foldtext = 'v:lua.vim.treesitter.foldtext()'
 vim.opt.foldtext = 'v:lua.MyFoldText()'
 -- vim.o.foldtext = ""
-vim.opt.foldcolumn = "2"
+vim.opt.foldcolumn = "1"
 vim.opt.fillchars:append({fold = " "})
 
 --------------------------------------------------------------------------------
