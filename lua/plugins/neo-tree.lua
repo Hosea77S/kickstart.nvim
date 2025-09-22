@@ -26,7 +26,7 @@ return {
                     ["<2-LeftMouse>"] = "open",
                     ["<cr>"] = "open",
                     ["<esc>"] = "cancel", -- close preview or floating neo-tree window
-                    ["s"] = "open_vsplit",
+                    ["s"] = "open_rightbelow_vs",
                     ["t"] = "open_tabnew",
                     ["P"] = {
                         "toggle_preview",
