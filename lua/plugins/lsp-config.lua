@@ -42,7 +42,8 @@ return {
     {
         "neovim/nvim-lspconfig",
         config = function()
-            local lspconfig = require('lspconfig')
+            -- local lspconfig = require('lspconfig')
+            local lspconfig = vim.lsp.config
 
             -- lspconfig.[SomeLSP_Server].setup({
                 -- cmd = {},
@@ -50,11 +51,11 @@ return {
                 -- capabilities = {},
                 -- settings = {},
             -- })
-            lspconfig.lua_ls.setup({})
+            lspconfig('lua_ls', {})
 
-            lspconfig.bashls.setup({})
+            lspconfig('bashls', {})
 
-            lspconfig.clangd.setup({
+            lspconfig('clangd', {
                 cmd = { 'clangd' },
                 filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
                 root_markers = {
@@ -76,7 +77,7 @@ return {
                 },
             })
 
-            lspconfig.vhdl_ls.setup({
+            lspconfig('vhdl_ls', {
                 cmd = {'vhdl_ls'},
                 filetypes = {'vhd', 'vhdl'},
                 root_markers = {
@@ -85,9 +86,9 @@ return {
                 },
             })
 
-            lspconfig.verible.setup({})
+            lspconfig('verible', {})
 
-            lspconfig.pyright.setup({
+            lspconfig('pyright', {
                 cmd = { "pyright-langserver", "--stdio" },
                 filetypes = { 'python' },
                 root_markers = {
