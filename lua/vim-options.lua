@@ -34,7 +34,7 @@ end
 -- vim.wo.foldtext = 'v:lua.vim.treesitter.foldtext()'
 vim.opt.foldtext = 'v:lua.MyFoldText()'
 -- vim.o.foldtext = ""
-vim.opt.foldcolumn = "1"
+vim.opt.foldcolumn = "0"
 vim.opt.fillchars:append({fold = " "})
 
 --------------------------------------------------------------------------------
