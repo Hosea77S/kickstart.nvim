@@ -1,4 +1,10 @@
 return {
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    }
     -- {
     --     "catppuccin/nvim",
     --     lazy = false,
@@ -19,13 +25,13 @@ return {
     --     end
     -- },
    
-    {
-        'projekt0n/github-nvim-theme',
-        config = function()
-            require('github-theme').setup({
-            })
-
-            vim.cmd('colorscheme github_dark_default')
-        end
-    },
+    -- {
+    --     'projekt0n/github-nvim-theme',
+    --     config = function()
+    --         require('github-theme').setup({
+    --         })
+    --
+    --         vim.cmd('colorscheme github_dark_default')
+    --     end
+    -- },
 }
