@@ -20,7 +20,7 @@ vim.cmd("set scrolloff=12")
 vim.cmd("set foldopen-=block")
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 0
+vim.opt.foldlevelstart = 99
 vim.opt.foldnestmax = 99
 
 vim.opt.foldmethod = "expr"
