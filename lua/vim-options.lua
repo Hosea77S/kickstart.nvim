@@ -47,4 +47,5 @@ vim.g.maplocalleader = " "
 
 -- GUI
 vim.o.guifont = "Cascadia Mono:h12"
-vim.g.neovide_cursor_animation_length = 0.04
+vim.g.neovide_cursor_animation_length = 0.06
+vim.g.neovide_cursor_vfx_mode = "railgun"
