@@ -2,7 +2,10 @@ return {
     {
         "folke/tokyonight.nvim",
         lazy = false,
-        priority = 1000,
+        -- priority = 1000,
+        config = function()
+            vim.cmd([[colorscheme tokyonight]])
+        end,
         opts = {},
     }
     -- {
@@ -24,7 +27,7 @@ return {
     --         vim.cmd([[colorscheme monokai-pro]])
     --     end
     -- },
-   
+
     -- {
     --     'projekt0n/github-nvim-theme',
     --     config = function()
