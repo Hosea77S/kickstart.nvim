@@ -40,3 +40,8 @@ vim.keymap.set({'n', 'v'}, '<leader>p', '"+p', {})
 --------------------------------------------------------------------------------
 
 vim.keymap.set('n', '<leader>r', ':%s//', {})
+
+vim.keymap.set('n', '<tab>','i<tab><escape>l', {})
+
+-- Clear highlights on search when pressing <Esc> in normal mode
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
