@@ -30,7 +30,8 @@ return {
                     "clangd",
                     "vhdl_ls",
                     "verible",
-                    "pyright"
+                    "pyright",
+                    -- "jinja_lsp"
                 }
             })
         end
@@ -100,6 +101,15 @@ return {
                     '.git',
                 },
             })
+
+            -- lspconfig('jinja_lsp', {})
+            vim.filetype.add {
+                extension = {
+                    jinja = 'jinja',
+                    jinja2 = 'jinja',
+                    j2 = 'jinja',
+                },
+            }
 
             -- type `:h vim.lsp.buf` for documentation on lsp functions
 
