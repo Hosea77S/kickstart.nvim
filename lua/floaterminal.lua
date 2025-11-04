@@ -1,7 +1,14 @@
 -- Source of inspiration: https://www.youtube.com/watch?v=5PIiKDES_wc
 
 vim.keymap.set("t", "jj", "<c-\\><c-n>")
-vim.o.shell = "powershell.exe"
+
+if vim.fn.has("win32") == 1 then
+  vim.o.shell = "powershell.exe"
+elseif vim.fn.has("wsl") == 1 then
+  vim.o.shell = "bash"
+else
+  vim.o.shell = "bash"
+end
 
 local state = {
   floating = {
@@ -50,6 +57,7 @@ local toggle_terminal = function()
     if vim.bo[state.floating.buf].buftype ~= "terminal" then
       vim.cmd.terminal()
     end
+    vim.cmd("startinsert")
   else
     vim.api.nvim_win_hide(state.floating.win)
   end
