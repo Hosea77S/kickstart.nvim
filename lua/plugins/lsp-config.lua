@@ -122,9 +122,9 @@ return {
             vim.keymap.set('n', 'gr',  require('telescope.builtin').lsp_references,                { desc = '[G]oto [R]eferences'})
             vim.keymap.set('n', 'gi',  require('telescope.builtin').lsp_implementations,           { desc = '[G]oto [I]mplementation'})
             vim.keymap.set('n', 'gd',  require('telescope.builtin').lsp_definitions,               { desc = '[G]oto [D]efinition'})
+            vim.keymap.set('n', 'gD',  require('telescope.builtin').lsp_type_definitions,          { desc = '[G]oto [T]ype Definition'})
             vim.keymap.set('n', 'gO',  require('telescope.builtin').lsp_document_symbols,          { desc = 'Open Document Symbols'})
             vim.keymap.set('n', 'gW',  require('telescope.builtin').lsp_dynamic_workspace_symbols, { desc = 'Open Workspace Symbols'})
-            vim.keymap.set('n', 'gt',  require('telescope.builtin').lsp_type_definitions,          { desc = '[G]oto [T]ype Definition'})
         end
     }
 }
