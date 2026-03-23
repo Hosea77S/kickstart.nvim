@@ -1,7 +1,9 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.cmd("set fileformat=unix")
+-- vim.cmd("set fileformat=unix")
 vim.cmd("filetype on")
+vim.opt.encoding = 'utf-8'
+vim.opt.fileformat = 'unix'
 --------------------------------------------------------------------------------
 
 -- TAB settings (using vim scripting in lua)
