@@ -6,6 +6,10 @@ vim.opt.encoding = 'utf-8'
 vim.opt.fileformat = 'unix'
 --------------------------------------------------------------------------------
 
+-- Update buffer when file changed on disk
+vim.opt.autoread = true
+vim.cmd.autocmd('FocusGained * silent! checktime')
+
 -- TAB settings (using vim scripting in lua)
 vim.cmd("set expandtab")
 vim.cmd("set tabstop=4")
