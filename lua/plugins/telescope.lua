@@ -1,7 +1,10 @@
 return {
     {
         'nvim-telescope/telescope.nvim', tag = '0.1.8',
-        dependencies = { 'nvim-lua/plenary.nvim' },
+        dependencies = { 
+            'nvim-lua/plenary.nvim',
+            { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make'}
+        },
 
         config = function()
             require("telescope").setup({
@@ -10,6 +13,14 @@ return {
                         n = {['<c-d>'] = require('telescope.actions').delete_buffer},
                     },
                 },
+                pickers = {
+                    find_files = {
+                        theme = "ivy"
+                    }
+                },
+                extensions = {
+                    fzf = {}
+                }
             })
 
             -- Enable Telescope extensions if they are installed
@@ -41,6 +52,7 @@ return {
                 builtin.find_files { cwd = vim.fn.stdpath 'config' }
             end, { desc = '[S]earch [N]eovim files' })
 
+            require "config.telescope.multigrep".setup()
         end
     },
 
