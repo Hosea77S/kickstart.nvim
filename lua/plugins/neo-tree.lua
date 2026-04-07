@@ -11,6 +11,7 @@ return {
         vim.keymap.set( 'n', '<leader>N', ':Neotree filesystem reveal position=left reveal<CR>', { desc = 'Opens filesystem tree on left'})
         vim.keymap.set( 'n', '<leader>n', ':Neotree action=focus source=filesystem position=float toggle=true reveal<CR>', { desc = 'Opens floating filesystem tree'})
         vim.keymap.set( 'n', '<leader>g', ':Neotree action=focus source=git_status position=left toggle=true reveal<CR>', { desc = 'Opens floating filesystem tree'})
+        vim.keymap.set( 'n', '<leader>b', ':Neotree action=focus source=buffers position=float toggle=true reveal<CR>', { desc = 'Opens floating filesystem tree'})
 
         require("neo-tree").setup({
             filesystem = {
