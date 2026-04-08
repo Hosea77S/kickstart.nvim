@@ -1,4 +1,11 @@
 return {
+    -- {
+    --     "bluz71/vim-moonfly-colors",
+    --     name = "moonfly",
+    --     lazy = false,
+    --     priority = 1000
+    -- },
+
     {
         "folke/tokyonight.nvim",
         lazy = false,
@@ -14,6 +21,7 @@ return {
         end,
         opts = {},
     }
+
     -- {
     --     "catppuccin/nvim",
     --     lazy = false,
