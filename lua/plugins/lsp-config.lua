@@ -92,6 +92,12 @@ return {
             lspconfig('pyright', {
                 cmd = { "pyright-langserver", "--stdio" },
                 filetypes = { 'python' },
+                settings = {
+                        python = {
+                            venvPath = ".",
+                            venv = ".venv", -- or "venv", whatever your folder is called
+                        },
+                    },
                 root_markers = {
                     'pyproject.toml',
                     'setup.py',

@@ -7,7 +7,7 @@ return{
         local configs = require("nvim-treesitter.configs")
         configs.setup({
             ensure_installed = { "c", "cpp", "lua", "markdown", "markdown_inline", "json5", "make", "python",
-                "vhdl", "verilog", "tcl", "json", "jinja"
+                "vhdl", "verilog", "tcl", "json", "jinja", "python"
             },
             highlight = {
                 enable = true,
