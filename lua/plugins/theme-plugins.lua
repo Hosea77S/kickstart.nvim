@@ -1,26 +1,29 @@
 return {
-    -- {
-    --     "bluz71/vim-moonfly-colors",
-    --     name = "moonfly",
-    --     lazy = false,
-    --     priority = 1000
-    -- },
-
     {
-        "folke/tokyonight.nvim",
+        "bluz71/vim-moonfly-colors",
+        name = "moonfly",
         lazy = false,
-        -- priority = 1000,
+        priority = 1000,
         config = function()
-            require("tokyonight").setup({
-                style = "night",
-                on_colors = function(colors)
-                    colors.bg = "#000000"
-                end
-            })
-            vim.cmd([[colorscheme tokyonight]])
+            vim.cmd.colorscheme("moonfly")
         end,
-        opts = {},
-    }
+    },
+
+    -- {
+    --     "folke/tokyonight.nvim",
+    --     lazy = false,
+    --     -- priority = 1000,
+    --     config = function()
+    --         require("tokyonight").setup({
+    --             style = "night",
+    --             on_colors = function(colors)
+    --                 colors.bg = "#000000"
+    --             end
+    --         })
+    --         vim.cmd([[colorscheme tokyonight]])
+    --     end,
+    --     opts = {},
+    -- }
 
     -- {
     --     "catppuccin/nvim",
