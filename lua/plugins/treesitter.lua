@@ -1,11 +1,10 @@
 return{
     "nvim-treesitter/nvim-treesitter",
-    branch = 'master',
+    branch = 'main',
     lazy = false,
     build = ":TSUpdate",
     config = function()
-        -- local configs = require("nvim-treesitter.configs")
-        local configs = require("nvim-treesitter.configs") -- removed the 's' from configs
+        local configs = require("nvim-treesitter.config")
         configs.setup({
             ensure_installed = { "c", "cpp", "lua", "markdown", "markdown_inline", "json5", "make", "python",
                 "vhdl", "verilog", "tcl", "json", "jinja", "python"
