@@ -1,5 +1,14 @@
-vim.opt.number = true
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+
+---BASIC
+vim.opt.number         = true
 vim.opt.relativenumber = true
+vim.opt.cursorline      = true
+vim.opt.wrap           = false
+vim.opt.scrolloff      = 12
+vim.opt.sidescrolloff  = 8
 -- vim.cmd("set fileformat=unix")
 vim.cmd("filetype on")
 vim.opt.encoding = 'utf-8'
@@ -9,20 +18,43 @@ vim.opt.fileformat = 'unix'
 -- Update buffer when file changed on disk
 vim.opt.autoread = true
 vim.cmd.autocmd('FocusGained * silent! checktime')
-
--- TAB settings (using vim scripting in lua)
-vim.cmd("set expandtab")
-vim.cmd("set tabstop=4")
-vim.cmd("set softtabstop=4")
-vim.cmd("set shiftwidth=0")
-
--- UNRELATED: for some reason <C-n> in insert mode opens text suggestions?
 --------------------------------------------------------------------------------
 
--- VISUAL SETTINGS
-vim.cmd("set nowrap")
-vim.cmd("set cursorline")
-vim.cmd("set scrolloff=12")
+-- Indentation
+vim.opt.tabstop     = 4                           -- Tab width
+vim.opt.shiftwidth  = 0                           -- Indent width
+vim.opt.softtabstop = 4                           -- Soft tab stop
+vim.opt.expandtab   = true                        -- Use spaces instead of tabs
+vim.opt.smartindent = true                        -- Smart auto-indenting
+vim.opt.autoindent  = true                        -- Copy indent from current line
+--------------------------------------------------------------------------------
+
+-- Search settings
+vim.opt.ignorecase = true                          -- Case insensitive search
+vim.opt.smartcase  = true                          -- Case sensitive if uppercase in search
+vim.opt.hlsearch   = true                          -- highlight search results 
+vim.opt.incsearch  = true                          -- Show matches as you type
+--------------------------------------------------------------------------------
+
+-- Visual settings
+vim.opt.termguicolors = true                       -- Enable 24-bit colors
+vim.opt.signcolumn = "yes"                         -- Always show sign column
+vim.opt.colorcolumn = "100"                        -- Show column at 100 characters
+vim.opt.showmatch = true                           -- Highlight matching brackets
+vim.opt.cmdheight = 2                              -- Command line height
+vim.opt.completeopt = "menuone,noinsert,noselect"  -- Completion options 
+vim.opt.showmode = false                           -- Don't show mode in command line 
+vim.opt.pumheight = 10                             -- Popup menu height 
+vim.opt.pumblend = 10                              -- Popup menu transparency 
+vim.opt.winblend = 0                               -- Floating window transparency 
+vim.opt.conceallevel = 0                           -- Don't hide markup 
+vim.opt.concealcursor = ""                         -- Don't hide cursor line markup 
+vim.opt.lazyredraw = true                          -- Don't redraw during macros
+vim.opt.synmaxcol = 300                            -- Syntax highlighting limit 
+vim.opt.fillchars = { eob = " " }                  -- Hide ~ on empty lines
+--------------------------------------------------------------------------------
+
+-- Folds
 vim.cmd("set foldopen-=block")
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99
@@ -44,6 +76,45 @@ vim.opt.foldcolumn = "0"
 vim.opt.fillchars:append({fold = " "})
 --------------------------------------------------------------------------------
 
+-- Undo Folder
+-- Create undo directory if it doesn't exist
+local undodir = vim.fn.expand("~/.vim/undodir")
+if vim.fn.isdirectory(undodir) == 0 then
+    vim.fn.mkdir(undodir, "p")
+end
+--------------------------------------------------------------------------------
+
+-- File handling
+vim.opt.backup = false                             -- Don't create backup files
+vim.opt.writebackup = false                        -- Don't create backup before writing
+vim.opt.swapfile = false                           -- Don't create swap files
+vim.opt.undofile = true                            -- Persistent undo
+vim.opt.undodir = vim.fn.expand("~/.vim/undodir")  -- Undo directory
+vim.opt.updatetime = 300                           -- Faster completion
+vim.opt.timeoutlen = 500                           -- Key timeout duration
+vim.opt.ttimeoutlen = 0                            -- Key code timeout
+vim.opt.autoread = true                            -- Auto reload files changed outside vim
+vim.opt.autowrite = false                          -- Don't auto save
+--------------------------------------------------------------------------------
+
+-- Behavior settings
+vim.opt.hidden = true                              -- Allow hidden buffers
+vim.opt.errorbells = false                         -- No error bells
+vim.opt.backspace = "indent,eol,start"             -- Better backspace behavior
+vim.opt.autochdir = false                          -- Don't auto change directory
+vim.opt.iskeyword:append("-")                      -- Treat dash as part of word
+vim.opt.path:append("**")                          -- include subdirectories in search
+vim.opt.selection = "exclusive"                    -- Selection behavior
+vim.opt.mouse = "a"                                -- Enable mouse support
+vim.opt.clipboard:append("unnamedplus")            -- Use system clipboard
+vim.opt.modifiable = true                          -- Allow buffer modifications
+--------------------------------------------------------------------------------
+
+-- Split behavior
+vim.opt.splitbelow = true                          -- Horizontal splits go below
+vim.opt.splitright = true                          -- Vertical splits go right
+--------------------------------------------------------------------------------
+
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
@@ -55,3 +126,138 @@ vim.g.maplocalleader = " "
 vim.o.guifont = "Cascadia Mono:h11"
 vim.g.neovide_cursor_animation_length = 0.06
 vim.g.neovide_cursor_vfx_mode = "railgun"
+--------------------------------------------------------------------------------
+
+-- Copy Full File-Path
+vim.keymap.set("n", "<leader>pa", function()
+	local path = vim.fn.expand("%:p")
+	vim.fn.setreg("+", path)
+	print("file:", path)
+end)
+--------------------------------------------------------------------------------
+
+-- Basic autocommands
+local augroup = vim.api.nvim_create_augroup("UserConfig", {})
+
+-- Highlight yanked text
+vim.api.nvim_create_autocmd("TextYankPost", {
+  group = augroup,
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
+--------------------------------------------------------------------------------
+
+-- Return to last edit position when opening files
+vim.api.nvim_create_autocmd("BufReadPost", {
+  group = augroup,
+  callback = function()
+    local mark = vim.api.nvim_buf_get_mark(0, '"')
+    local lcount = vim.api.nvim_buf_line_count(0)
+    local line = mark[1]
+    local ft = vim.bo.filetype
+    if line > 0 and line <= lcount
+      and vim.fn.index({ "commit", "gitrebase", "xxd" }, ft) == -1
+      and not vim.o.diff then
+      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+    end
+  end,
+})
+--------------------------------------------------------------------------------
+
+-- Auto-resize splits when window is resized
+vim.api.nvim_create_autocmd("VimResized", {
+  group = augroup,
+  callback = function()
+    vim.cmd("tabdo wincmd =")
+  end,
+})
+--------------------------------------------------------------------------------
+
+-- Better diff options
+vim.opt.diffopt:append("linematch:60")
+--------------------------------------------------------------------------------
+
+-- Performance improvements
+vim.opt.redrawtime = 10000
+vim.opt.maxmempattern = 20000
+--------------------------------------------------------------------------------
+
+-- Tab display settings
+vim.opt.showtabline = 1  -- Always show tabline (0=never, 1=when multiple tabs, 2=always)
+vim.opt.tabline = ''     -- Use default tabline (empty string uses built-in)
+
+-- Function to duplicate current tab
+local function duplicate_tab()
+  local current_file = vim.fn.expand('%:p')
+  if current_file ~= '' then
+    vim.cmd('tabnew ' .. current_file)
+  else
+    vim.cmd('tabnew')
+  end
+end
+-- Function to close tabs to the right
+local function close_tabs_right()
+  local current_tab = vim.fn.tabpagenr()
+  local last_tab = vim.fn.tabpagenr('$')
+
+  for i = last_tab, current_tab + 1, -1 do
+    vim.cmd(i .. 'tabclose')
+  end
+end
+
+-- Function to close tabs to the left
+local function close_tabs_left()
+  local current_tab = vim.fn.tabpagenr()
+
+  for i = current_tab - 1, 1, -1 do
+    vim.cmd('1tabclose')
+  end
+end
+
+-- Enhanced keybindings
+-- vim.keymap.set('n', '<leader>tO', open_file_in_tab, { desc = 'Open file in new tab' })
+vim.keymap.set('n', '<leader>td', duplicate_tab, { desc = 'Duplicate current tab' })
+vim.keymap.set('n', '<leader>tr', close_tabs_right, { desc = 'Close tabs to the right' })
+vim.keymap.set('n', '<leader>tL', close_tabs_left, { desc = 'Close tabs to the left' })
+
+-- Function to close buffer but keep tab if it's the only buffer in tab
+local function smart_close_buffer()
+  local buffers_in_tab = #vim.fn.tabpagebuflist()
+  if buffers_in_tab > 1 then
+    vim.cmd('bdelete')
+  else
+    -- If it's the only buffer in tab, close the tab
+    vim.cmd('tabclose')
+  end
+end
+vim.keymap.set('n', '<leader>bd', smart_close_buffer, { desc = 'Smart close buffer/tab' })
+--------------------------------------------------------------------------------
+
+-- Buffer Utility
+-- Close all buffers except current
+vim.keymap.set('n', '<leader>bo', ':%bd|e#|bd#<CR>', { desc = 'Close all buffers except current' })
+
+-- Rename current file
+vim.keymap.set('n', '<leader>rr', function()
+  local old_name = vim.fn.expand('%')
+  local new_name = vim.fn.input('New file name: ', old_name)
+  if new_name ~= '' and new_name ~= old_name then
+    vim.cmd('saveas ' .. new_name)
+    vim.fn.delete(old_name)
+    print('File renamed to: ' .. new_name)
+  end
+end, { desc = 'Rename current file' })
+
+-- Copy file path variations
+vim.keymap.set('n', '<leader>pf', function()
+  local path = vim.fn.expand('%:p')
+  vim.fn.setreg('+', path)
+  print('Full path: ' .. path)
+end, { desc = 'Copy full file path' })
+
+vim.keymap.set('n', '<leader>pr', function()
+  local path = vim.fn.expand('%')
+  vim.fn.setreg('+', path)
+  print('Relative path: ' .. path)
+end, { desc = 'Copy relative file path' })
