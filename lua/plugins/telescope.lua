@@ -10,7 +10,13 @@ return {
             require("telescope").setup({
                 defaults = {
                     mappings = {
-                        n = {['<c-d>'] = require('telescope.actions').delete_buffer},
+                        i = {
+                            ["<CR>"] = require('telescope.actions').select_vertical,
+                        },
+                        n = {
+                            ['<c-d>'] = require('telescope.actions').delete_buffer,
+                            ['<CR>']  = require('telescope.actions').select_vertical
+                        },
                     },
                 },
                 pickers = {

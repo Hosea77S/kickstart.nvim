@@ -13,6 +13,7 @@ Neovim setup for Hosea
 3. gcc and g++ (maybe Llvm for clang, too)
 4. install tree sitter cli:
     - `npm install -g tree-sitter-cli`
+    - or for ubuntu22.04: `npm install -g tree-sitter-cli@0.25.10`
 
 # Install nerdfont for linux
 
