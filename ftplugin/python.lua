@@ -1,4 +1,4 @@
-vim.opt_local.foldenable = true
-vim.opt_local.foldlevel = 99
-vim.opt_local.foldlevelstart = 0
-vim.opt_local.foldlevelstart = 1
+vim.opt.foldenable = true
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldnestmax = 99
