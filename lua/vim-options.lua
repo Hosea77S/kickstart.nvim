@@ -84,7 +84,7 @@ if vim.fn.isdirectory(undodir) == 0 then
 end
 --------------------------------------------------------------------------------
 
--- File handling
+-- -- File handling
 vim.opt.backup = false                             -- Don't create backup files
 vim.opt.writebackup = false                        -- Don't create backup before writing
 vim.opt.swapfile = false                           -- Don't create swap files
@@ -92,7 +92,7 @@ vim.opt.undofile = true                            -- Persistent undo
 vim.opt.undodir = vim.fn.expand("~/.vim/undodir")  -- Undo directory
 vim.opt.updatetime = 300                           -- Faster completion
 vim.opt.timeoutlen = 500                           -- Key timeout duration
-vim.opt.ttimeoutlen = 0                            -- Key code timeout
+vim.opt.ttimeoutlen = 50                            -- Key code timeout
 vim.opt.autoread = true                            -- Auto reload files changed outside vim
 vim.opt.autowrite = false                          -- Don't auto save
 --------------------------------------------------------------------------------
