@@ -44,7 +44,7 @@ vim.keymap.set('n', '<leader>[', ':-tabn<cr>', {})
 --------------------------------------------------------------------------------
 
 -- Yank
-vim.keymap.set({'n', 'v'}, '<leader>y', '"+y', {})
+-- vim.keymap.set({'n', 'v'}, '<leader>y', '"+y', {})
 -- vim.keymap.set('n', '<leader>yy', '"+yy', {})
 vim.keymap.set("n", "Y", "y$", { desc = "Yank to end of line" })
 
@@ -80,4 +80,3 @@ vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase w
 -- Better indenting in visual mode
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
-
